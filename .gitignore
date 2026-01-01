@@ -1,0 +1,28 @@
+# Dépendances
+node_modules/
+package-lock.json
+
+# Données sensibles
+.env
+data/
+
+# Cookies
+cookies_*.json
+
+# Screenshots
+*.png
+error-*.png
+
+# Logs
+*.log
+npm-debug.log*
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo

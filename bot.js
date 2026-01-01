@@ -91,21 +91,17 @@ class InstagramBot {
     await this.db.init(this.username);
     
     this.browser = await puppeteer.launch({
-      headless: false,
+      headless: 'new',
       args: [
         '--no-sandbox',
-        '--disable-setuid-sandbox',
-        '--disable-dev-shm-usage',
-        '--disable-blink-features=AutomationControlled'
+        '--disable-setuid-sandbox'
       ]
     });
     
     this.page = await this.browser.newPage();
     
     await this.page.setViewport({ width: 1366, height: 768 });
-    await this.page.setUserAgent(
-      'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
-    );
+    await this.page.setUserAgent('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36');
     
     await this.page.evaluateOnNewDocument(() => {
       Object.defineProperty(navigator, 'webdriver', {

@@ -387,6 +387,7 @@ class InstagramBot {
     console.log(`📋 Récupération de ${limit} suggestions...`);
     
     try {
+      console.log("==> https://www.instagram.com/explore/people/")
       await this.page.goto(`https://www.instagram.com/explore/people/`, {
         waitUntil: 'networkidle2'
       });
@@ -415,6 +416,7 @@ class InstagramBot {
       console.log(`✅ ${followCount} personnes suivies`);
       
     } catch (error) {
+      await this.page.screenshot({ path: 'error-follow-people.png' });
       console.error('❌ Erreur récupération followers:', error.message);
     }
   }

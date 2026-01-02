@@ -1,4 +1,6 @@
-const puppeteer = require('puppeteer');
+const puppeteer = require('puppeteer-extra');
+const StealthPlugin = require('puppeteer-extra-plugin-stealth');
+puppeteer.use(StealthPlugin());
 const config = require('./config');
 const Database = require('./database');
 const fs = require('fs').promises;
@@ -94,13 +96,15 @@ class InstagramBot {
       headless: 'new',
       args: [
         '--no-sandbox',
-        '--disable-setuid-sandbox'
+        '--disable-setuid-sandbox',
+        '--disable-blink-features=AutomationControlled',
+        '--disable-features=IsolateOrigins,site-per-process'
       ]
     });
     
     this.page = await this.browser.newPage();
     
-    await this.page.setViewport({ width: 1366, height: 768 });
+    await this.page.setViewport({ width: 1920, height: 1080 });
     await this.page.setUserAgent('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36');
     
     await this.page.evaluateOnNewDocument(() => {

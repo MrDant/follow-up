@@ -254,7 +254,7 @@ class InstagramBot {
   }
 
   async openFollowing() {
-    const followingLink = await this.page.$('a[href*="/following/"]');
+    const followingLink = await this.page.waitForSelector('a[href*="/following/"]');
     if (!followingLink) {
       throw new Error('Impossible de trouver le lien "following"');
     }

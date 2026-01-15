@@ -5,8 +5,10 @@ package-lock.json
 # Données sensibles
 .env
 data/
+screenshots/
+snapshots/
 
-# Cookies
+# data
 cookies_*.json
 
 # Screenshots

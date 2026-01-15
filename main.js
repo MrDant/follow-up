@@ -25,7 +25,7 @@ async function main() {
       // ==========================================
 
       // MODE 1: Suivre des personnes depuis la page explore
-      // await bot.addExploreFollowers(5);
+      await bot.addExploreFollowers(5);
 
       // MODE 2: Scanner les personnes suivies et mettre à jour la BDD
       // await bot.scanAndUpdateFollowing();

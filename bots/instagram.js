@@ -321,6 +321,10 @@ class InstagramBot extends MainBot {
 
       await this.randomDelay(3000);
 
+      await this.page.waitForSelector(
+        "button::-p-text(Follow), button::-p-text(Suivre)"
+      );
+
       const followButtons = await this.page.$$("button");
       let followCount = 0;
 
@@ -342,7 +346,7 @@ class InstagramBot extends MainBot {
 
       console.log(`✅ ${followCount} personnes suivies`);
     } catch (error) {
-      await this.page.screenshot({ path: "error-follow-people.png" });
+      await console.snapshot("error-follow-people", this.page);
       console.error("❌ Erreur récupération followers:", error.message);
     }
   }

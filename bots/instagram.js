@@ -83,7 +83,7 @@ class InstagramBot extends MainBot {
         delay: 100,
       });
 
-      await console.log("🔘 Clic sur le bouton de connexion...", this.page);
+      console.log("🔘 Clic sur le bouton de connexion...");
 
       await this.page.click(
         'button[type="submit"], div[role="button"]:not([aria-label="Show password"])'
@@ -91,6 +91,7 @@ class InstagramBot extends MainBot {
 
       try {
         await this.page.waitForNavigation();
+        console.log(this.page.url());
       } catch (e) {
         console.log("⏳ pas de redirection donc retour à l'accueil");
         await this.page.goto("https://www.instagram.com/", {

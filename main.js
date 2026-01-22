@@ -2,6 +2,7 @@ const InstagramBot = require("./bots/instagram");
 require("dotenv").config();
 const cron = require("node-cron");
 const console = require("./utils/logs");
+const config = require("./config");
 
 async function main() {
   const accounts = process.env.INSTAGRAM_ACCOUNTS.split(",").map((e) => {
@@ -25,14 +26,14 @@ async function main() {
       // ==========================================
 
       // MODE 1: Suivre des personnes depuis la page explore
-      await bot.addExploreFollowers(5);
+      await bot.addExploreFollowers(config.MAX_FOLLOWS_PER_HOUR);
 
       // MODE 2: Scanner les personnes suivies et mettre à jour la BDD
       // await bot.scanAndUpdateFollowing();
 
       // MODE 3: Nettoyer (unfollow) ceux qui ne suivent pas en retour
       // Le paramètre autoScan=true va automatiquement scanner si besoin
-      await bot.cleanupNonFollowers(10, true);
+      await bot.cleanupNonFollowers(config.MAX_UNFOLLOWS_PER_HOUR, true);
     } catch (error) {
       console.error(`❌ Erreur pour ${account.username}:`, error.message);
     } finally {

@@ -58,10 +58,13 @@ class MainBot {
     await new Promise((resolve) => setTimeout(resolve, totalDelay));
   }
 
+  async initDB() {
+    await this.db.init(this.username);
+  }
   // Initialisation du navigateur
   async init() {
     console.log("🚀 Initialisation du bot...");
-    await this.db.init(this.username);
+    await this.initDB();
 
     console.log("===== Lancement de chrome =====");
 

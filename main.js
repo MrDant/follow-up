@@ -1,4 +1,5 @@
 const InstagramBot = require("./bots/instagram");
+const JobUpBot = require("./bots/jobup");
 require("dotenv").config();
 const cron = require("node-cron");
 const console = require("./utils/logs");
@@ -42,9 +43,33 @@ async function main() {
   }
 }
 
-// S'exécute à 9h et 21h chaque jour
-cron.schedule("0 9,17 * * *", () => {
-  console.log("Exécution à", new Date());
-  main();
-});
-main();
+async function jobUp() {
+  const bot = new JobUpBot();
+
+  await bot.init();
+  const jobslink = await bot.getJobs();
+  for (const link of jobslink) {
+    console.log("save : " + link);
+    try {
+      await bot.saveJob(link);
+    } catch (e) {
+      console.log(link + " pas passé");
+    }
+  }
+}
+
+// // S'exécute à 9h et 21h chaque jour
+// cron.schedule("0 9,17 * * *", () => {
+//   console.log("Exécution à", new Date());
+//   main();
+// });
+
+// // S'exécute à 6h
+// cron.schedule("0 6 * * *", () => {
+//   console.log("Exécution de JobUp à", new Date());
+//   jobUp().then();
+// });
+
+// main();
+
+jobUp().then();

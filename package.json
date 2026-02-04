@@ -13,6 +13,7 @@
   "type": "commonjs",
   "dependencies": {
     "dotenv": "^17.2.3",
+    "firebase": "^12.8.0",
     "node-cron": "^4.2.1",
     "puppeteer": "^24.34.0",
     "puppeteer-extra": "^3.3.6",
